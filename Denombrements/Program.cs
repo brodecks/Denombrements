@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Denombrements
 {
@@ -10,60 +6,73 @@ namespace Denombrements
     {
         static void Main(string[] args)
         {
-            int c = 1;
-            while (c != 0)
+            //decla
+            int choix = 1;
+            while (choix != 0)
             {
                 Console.WriteLine("Permutation ...................... 1");
                 Console.WriteLine("Arrangement ...................... 2");
                 Console.WriteLine("Combinaison ...................... 3");
                 Console.WriteLine("Quitter .......................... 0");
                 Console.Write("Choix :                            ");
-                c = int.Parse(Console.ReadLine());
+                choix = int.Parse(Console.ReadLine());
 
-                if (c == 0) { Environment.Exit(0); }
+                if (choix == 0) { Environment.Exit(0); }
 
-                if (c == 1)
+                //choix de la permutation
+                if (choix == 1)
                 {
-                    Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
-                    int n = int.Parse(Console.ReadLine()); // saisir le nombre
-                                                           // calcul de r
-                    long r = 1;
-                    for (int k = 1; k <= n; k++)
-                        r *= k;
-                    Console.WriteLine(n + "! = " + r);
+                    // saisie du nombre d'éléments à gérer
+                    Console.Write("nombre total d'éléments à gérer = "); 
+                    int nombre = int.Parse(Console.ReadLine());
+                    // calcul de la permutation
+                    long permut = 1;
+                    for (int k = 1; k <= nombre; k++)
+                        permut *= k;
+                    //affichage du resultat
+                    Console.WriteLine(nombre + "! = " + permut);
                 }
                 else
                 {
-                    if (c == 2)
+                    //choix de l'arrangement
+                    if (choix == 2)
                     {
-                        Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
-                        int t = int.Parse(Console.ReadLine()); // saisir le nombre
-                        Console.Write("nombre d'éléments dans le sous ensemble = "); // le sous ensemble
-                        int n = int.Parse(Console.ReadLine()); // saisir le nombre
-                        // calcul de r
-                        long r = 1;
-                        for (int k = (t - n + 1); k <= t; k++)
-                            r *= k;
-                        //Console.WriteLine("résultat = " + (r1 / r2));
-                        Console.WriteLine("A(" + t + "/" + n + ") = " + r);
+                        // saisie du nombre d'éléments à gérer
+                        Console.Write("nombre total d'éléments à gérer = ");
+                        int nombre = int.Parse(Console.ReadLine());
+                        // saisie du nombre de sous ensemble
+                        Console.Write("nombre d'éléments dans le sous ensemble = "); 
+                        int sousEnsemble = int.Parse(Console.ReadLine()); 
+
+                        // calcul de l'arrangement
+                        long arrangement = 1;
+                        for (int k = (nombre - sousEnsemble + 1); k <= nombre; k++)
+                            arrangement *= k;
+                        //affichage du resultat
+                        Console.WriteLine("A(" + nombre + "/" + sousEnsemble + ") = " + arrangement);
                     }
                     else
                     {
-                        Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
-                        int t = int.Parse(Console.ReadLine()); // saisir le nombre
-                        Console.Write("nombre d'éléments dans le sous ensemble = "); // le sous ensemble
-                        int n = int.Parse(Console.ReadLine()); // saisir le nombre
-                        // calcul de r1
+                        //choix de la combinaison
+                        // saisie du nombre d'éléments à gérer
+                        Console.Write("nombre total d'éléments à gérer = "); 
+                        int nombre = int.Parse(Console.ReadLine());
+                        // saisie du nombre de sous ensemble
+                        Console.Write("nombre d'éléments dans le sous ensemble = "); 
+                        int SousEnsemble = int.Parse(Console.ReadLine());
+                        
+                        // calcul de la combinaison
                         long r1 = 1;
-                        for (int k = (t - n + 1); k <= t; k++)
+                        for (int k = (nombre - SousEnsemble + 1); k <= nombre; k++)
                             r1 *= k;
-                        // calcul de r2
+
+                        // calcul de la permutation
                         long r2 = 1;
-                        for (int k = 1; k <= n; k++)
+                        for (int k = 1; k <= SousEnsemble; k++)
                             r2 *= k;
-                        // calcul de r3
-                        //Console.WriteLine("résultat = " + (r1 / r2));
-                        Console.WriteLine("C(" + t + "/" + n + ") = " + (r1 / r2));
+                        
+                        //affichage du resultat
+                        Console.WriteLine("C(" + nombre + "/" + SousEnsemble + ") = " + (r1 / r2));
                     }
                 }
             }
